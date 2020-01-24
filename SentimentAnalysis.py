@@ -1,31 +1,11 @@
-import re                               #importing to receive only specific kinds of string
+import re                             #importing to receive only specific kinds of string
 import pandas as pd                     #imorting to read csv files
-
+listlist=[]
 def solver(listreview):                        #This function generates a list that stores words from the tweets.txt such as not-so-happy in the
-    listchecker = re.findall(r'\w+-.+', listreview)    #Regex function that stores text contents in a list(ignores the value of coordinates)
-    newlist = []                                       #List declared to store text contents that would generated after the execution of this function
-    punctuation = "!@#$%^&*()_=+[{]}\\|;:\'\'',<.>/?"  #List of punctuations to be stripped from the tweets
-    listchecker[0] = listchecker[0].split()             #Splitting the contents in a list
-    length = len(listchecker[0])                        #Stores the length of the list
-
-    for p in range(0, length):                          #Loop traverses through whole list
-        leng = len(listchecker[0][p])                   #Store lenth of individual word in a list
-        for q in range(0, leng):                        #Loop traverses through the pth word's length
-            if listchecker[0][p][q] in punctuation:     #Checks whether the word contains the punctuation
-
-                listchecker[0][p] = listchecker[0][p].replace(listchecker[0][p][q], " ")        #Replacing the punctuation with space
-                word = re.findall(r'\w+', listchecker[0][p])    #Stores the words in a list after the punctuations are removed
-
-                lengt = len(word)                               #Stores the number of elements in the word
-
-
-                for i in range(0, lengt):                       #Loop goes till on till all the elements are read
-                    newlist.append(word[i])                     #Append the modified words in a newlist
-
-        newlist.append(listchecker[0][p])                       #If there were no punctuations,the word is appended outside the loop
-
-    return(newlist)                                             #Returns the refined list
-
+                                         #List declared to store text contents that would generated after the execution of this function
+    punctuation = "!@#$%^&*()_=+[{]}\\|;:\'\'',<.>/?"#List of punctuations to be stripped from the tweets
+    listreview.strip(punctuation)
+    return(listreview)
 
 def formatInput(textLine):              #function that returns capital letters into small letters
     textLine = textLine.lower().strip()
@@ -99,4 +79,4 @@ def compute_tweets(filewithtweets,filewithkeywords):        #Function that gets 
         print("Error")
 
 
-compute_tweets('tweets.txt','keywords.txt')
+compute_tweets('testit.txt','keywords.txt')
